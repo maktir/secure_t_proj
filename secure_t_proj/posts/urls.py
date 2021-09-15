@@ -13,7 +13,8 @@ router = routers.DefaultRouter()
 router.register(r'posts', PostViewSet, basename='posts')
 router.register(r'posts/(?P<post_id>\d+)/comments',
                 CommentToPostViewSet, basename='comments')
-router.register(r'posts/(?P<post_id>\d+)/comments/(?P<comment_id>\d+)/nested_comments',
+router.register((r'posts/(?P<post_id>\d+)/comments/'
+                 r'(?P<comment_id>\d+)/nested_comments'),
                 CommentToCommentViewSet, basename='nested_comments')
 
 urlpatterns = [

@@ -34,10 +34,12 @@ class CommentToCommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentToCommentSerializer
 
     def get_queryset(self):
-        parent_comment = get_object_or_404(CommentToPost, pk=self.kwargs['comment_id'])
+        parent_comment = get_object_or_404(CommentToPost,
+                                           pk=self.kwargs['comment_id'])
         return parent_comment.comments_to_comment.all()
 
     def perform_create(self, serializer):
-        parent_comment = get_object_or_404(CommentToPost, id=self.kwargs['comment_id'])
+        parent_comment = get_object_or_404(CommentToPost,
+                                           id=self.kwargs['comment_id'])
         serializer.save(author=self.request.user,
                         parent_comment=parent_comment)
